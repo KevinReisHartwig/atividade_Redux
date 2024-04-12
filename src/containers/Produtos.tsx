@@ -1,9 +1,12 @@
 import Produto from '../components/Produto'
 import * as S from './styles'
 import { useGetProdutosQuery } from '../services/api'
+import { useDispatch } from 'react-redux'
+import { favoritar } from '../store/redurcers/favoritar'
 
 const Produtos = () => {
   const { data: produtos, isLoading } = useGetProdutosQuery()
+  const dispatch = useDispatch()
 
   if (isLoading) return <h2>Carregando...</h2>
 
@@ -13,7 +16,7 @@ const Produtos = () => {
         <Produto
           key={produto.id}
           produto={produto}
-          favoritar={Produtos}
+          favoritar={() => dispatch(favoritar(produto))}
           estaNosFavoritos={false}
         />
       ))}

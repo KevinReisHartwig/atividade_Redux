@@ -1,4 +1,3 @@
-// components/Produto/index.tsx
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import * as S from './styles'

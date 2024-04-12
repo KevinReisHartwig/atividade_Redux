@@ -1,6 +1,5 @@
-//store/redurcers/carrinho.tsx
+// store/redurcers/carrinho.tsx
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-
 import { Produto } from '../../App'
 
 type CarrinhoState = {
@@ -19,7 +18,7 @@ const carrinhoSlice = createSlice({
       const produto = action.payload
 
       if (state.itens.find((p) => p.id === produto.id)) {
-        alert('Item já adicionado')
+        alert('Já foi adicionado ao carrinho')
       } else {
         state.itens.push(produto)
       }

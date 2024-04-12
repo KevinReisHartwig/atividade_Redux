@@ -4,11 +4,11 @@ import { Produto } from '../App'
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://fake-api-tau.vercel.app/api/ebac_sports'
+    baseUrl: 'https://fake-api-tau.vercel.app'
   }),
   endpoints: (builder) => ({
     getProdutos: builder.query<Produto[], void>({
-      query: () => 'produtos'
+      query: () => '/api/ebac_sports'
     })
   })
 })
