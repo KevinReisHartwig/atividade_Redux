@@ -1,22 +1,21 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
 import * as S from './styles'
+import { Produto as ProdutoType } from '../../App'
+import { useDispatch } from 'react-redux'
 import { adicionar } from '../../store/redurcers/carrinho'
 
 type Props = {
   produto: ProdutoType
-  favoritar: (produto: ProdutoType) => void
   estaNosFavoritos: boolean
+  toggleFavorito: () => void
 }
 
-export type ProdutoType = {
-  id: number
-  nome: string
-  preco: number
-  imagem: string
-}
+export const paraReal = (valor: number) =>
+  new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(
+    valor
+  )
 
-const Produto = ({ produto, favoritar, estaNosFavoritos }: Props) => {
+const Produto = ({ produto, estaNosFavoritos, toggleFavorito }: Props) => {
   const dispatch = useDispatch()
 
   return (
@@ -26,9 +25,9 @@ const Produto = ({ produto, favoritar, estaNosFavoritos }: Props) => {
       </S.Capa>
       <S.Titulo>{produto.nome}</S.Titulo>
       <S.Prices>
-        <strong>{produto.preco}</strong>
+        <strong>{paraReal(produto.preco)}</strong>
       </S.Prices>
-      <S.BtnComprar onClick={() => favoritar(produto)} type="button">
+      <S.BtnComprar onClick={() => toggleFavorito()} type="button">
         {estaNosFavoritos
           ? '- Remover dos favoritos'
           : '+ Adicionar aos favoritos'}
